@@ -9,7 +9,7 @@
 
 import React, { Component } from 'react'
 import PropTypes from 'prop-types' //consider using this!
-import { StyleSheet, SafeAreaView, View, FlatList, Text, Linking, Dimensions } from 'react-native'
+import { StyleSheet, SafeAreaView, View, FlatList, Text, Linking, Dimensions, TouchableOpacity } from 'react-native'
 import { material } from 'react-native-typography' //consider using this!
 import { Metrics, Colors } from '../Themes'
 
@@ -40,16 +40,15 @@ export default class News extends Component {
           data={articles}
           renderItem={({ item }) => (
             <View style = {styles.article}>
-              <Text style={material.headline}>{item.title}</Text>
-              <Text style={material.body1}>{item.snippet}</Text>
-              <Text style={material.body2}>{item.byline}</Text>
-              <Text style={material.caption}>{item.date}</Text>
-              <Text style={material.caption}>{item.url}</Text>
+              <TouchableOpacity onPress= {() => Linking.openURL(item.url)}>
+                <Text style={material.headline}>{item.title}</Text>
+                <Text style={material.body1}>{item.snippet}</Text>
+                <Text style={material.body2}>{item.byline}</Text>
+                <Text style={material.caption}>{item.date}</Text>
+              </TouchableOpacity>
             </View>
           )}
-          keyExtractor={item => item.url}
-          >
-          </FlatList>
+          keyExtractor={item => item.url}/>
       </View>
     );
   }
@@ -63,9 +62,10 @@ const styles = StyleSheet.create({
     paddingTop: 30
   },
   article: {
-    height: height * .3,
-    width: width,
-    padding: 15
+    margin: 20
+    //height: height * .3,
+    //width: width,
+    //padding: 15
   },
   title: {
     fontSize: 25

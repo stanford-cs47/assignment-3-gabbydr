@@ -97,13 +97,6 @@ export default class App extends React.Component {
           </View>
 
           <News articles={this.state.articles}/>
-
-          {/*And some news*/}
-
-          {/*Though, you can style and organize these however you want! power to you 😎*/}
-
-          {/*If you want to return custom stuff from the NYT API, checkout the APIRequest file!*/}
-
         </SafeAreaView>
       );
   }
